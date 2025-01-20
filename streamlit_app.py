@@ -22,8 +22,9 @@ uploaded_file = st.file_uploader("Upload an Image", type=["jpg", "jpeg", "png"])
 if uploaded_file is not None:
     # Display the uploaded image
     image = Image.open(uploaded_file).convert('RGB')
-    st.image(image, caption="Uploaded Image", use_column_width=True)
+    st.image(image, caption="Uploaded Image", use_container_width=True)
 
     if st.button("Generate Caption"):
-        caption = generate_caption(image)
+        with st.spinner("Generating caption..."):
+            caption = generate_caption(image)
         st.success("Generated Caption: " + caption)
